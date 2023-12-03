@@ -64,4 +64,48 @@ class CuotasController extends Controller
         }
     }
 
+    public function cuotasDueno(Request $request) {
+
+        $method = 'GET';
+        $baseUrl = 'localhost:8080/api/cuotas/obtener/dueno';
+        $requestParams = '?idDueno=' . $request->idDueno;
+        $url = $baseUrl . $requestParams;
+
+        $client = new Client();
+        $response = $client->request($method, $url)->getBody();
+
+        $cuotas = json_decode($response);
+
+        return view('cuotas.cuotasall', compact('cuotas'));
+    }
+
+    public function cuotasInquilino(Request $request) {
+
+        $method = 'GET';
+        $baseUrl = 'localhost:8080/api/cuotas/obtener/inquilino';
+        $requestParams = '?idInquilino=' . $request->idInquilino;
+        $url = $baseUrl . $requestParams;
+
+        $client = new Client();
+        $response = $client->request($method, $url)->getBody();
+
+        $cuotas = json_decode($response);
+
+        return view('cuotas.cuotasall', compact('cuotas'));
+    }
+
+    public function cuotasApartamento(Request $request) {
+
+        $method = 'GET';
+        $baseUrl = 'localhost:8080/api/cuotas/obtener/apartamento';
+        $requestParams = '?numApartamento=' . $request->numApartamento;
+        $url = $baseUrl . $requestParams;
+
+        $client = new Client();
+        $response = $client->request($method, $url)->getBody();
+
+        $cuotas = json_decode($response);
+
+        return view('cuotas.cuotasall', compact('cuotas'));
+    }
 }

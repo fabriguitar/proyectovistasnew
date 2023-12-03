@@ -38,6 +38,15 @@ Route::get('/apartamentos/agregar',[ApartamentosController::class, 'agregar'])->
 //cuota
 Route::get('/cuotas/index',[CuotasController::class, 'index'])->name('cuotas.all');
 
+Route::get('/cuotas/dueno',[CuotasController::class, 'cuotasDueno'])
+    ->name('cuotas.dueno');
+
+Route::get('/cuotas/inquilino',[CuotasController::class, 'cuotasInquilino'])
+    ->name('cuotas.inquilino');
+    
+Route::get('/cuotas/apartamento',[CuotasController::class, 'cuotasApartamento'])
+    ->name('cuotas.apartamento');
+
 Route::get('/cuotas/crear', [CuotasController::class, 'crear'])->name('cuotas.crear');
 
 Route::get('/cuotas/cancelar', [CuotasController::class, 'cancelar'])->name('cuotas.cancelar');
