@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApartamentosController;
+use App\Http\Controllers\CuotasController;
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\InquilinosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +38,20 @@ Route::get('/apartamentos/agregar',[ApartamentosController::class, 'agregar'])->
 //cuota
 Route::get('/cuotas/index',[CuotasController::class, 'index'])->name('cuotas.all');
 
+Route::get('/cuotas/dueno',[CuotasController::class, 'cuotasDueno'])
+    ->name('cuotas.dueno');
+
+Route::get('/cuotas/inquilino',[CuotasController::class, 'cuotasInquilino'])
+    ->name('cuotas.inquilino');
+    
+Route::get('/cuotas/apartamento',[CuotasController::class, 'cuotasApartamento'])
+    ->name('cuotas.apartamento');
+
 Route::get('/cuotas/crear', [CuotasController::class, 'crear'])->name('cuotas.crear');
+
+Route::get('/cuotas/cancelar', [CuotasController::class, 'cancelar'])->name('cuotas.cancelar');
+
+Route::post('/cuotas/nueva', [CuotasController::class, 'nueva'])->name('cuotas.nueva');
 
 //inquilinos
 Route::get('/inquilinos/mostrar', [InquilinosController::class, 'obtenerTodos'])->name('inquilinos.mostrar');
