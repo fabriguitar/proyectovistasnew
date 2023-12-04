@@ -57,21 +57,25 @@
 </head>
 <body>
 
-    <div id="content">
+    <h1>Eliminar Inquilino</h1>
 
-        <h1>Eliminar Inquilino</h1>
+    <p>¿Estás seguro de que deseas eliminar este inquilino?</p>
 
-        <p>¿Estás seguro de que deseas eliminar este inquilino?</p>
+    <form action="{{ url('/inquilinos/eliminar/' . $idInquilino) }}" method="post">
+        @csrf
+        @method('delete')
+        <button type="submit">Eliminar</button>
+    </form>
 
-        <form action="/inquilinos/eliminar/{{ $codigoInquilino }}" method="post">
-            @csrf
-            @method('delete')
-            <button type="submit">Eliminar</button>
-        </form>
+    <a href="{{ route('inquilinos.mostrar') }}">Volver a la lista de inquilinos</a>
 
-        <a href="{{ url('/inquilinos') }}">Volver a la lista de inquilinos</a>
+    @if(session('success'))
+        <p style="color: green;">{{ session('success') }}</p>
+    @elseif(session('error'))
+        <p style="color: red;">{{ session('error') }}</p>
+    @endif
 
-    </div>
+</div>
 
 </body>
 </html>

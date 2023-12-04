@@ -68,26 +68,28 @@
     <div id="content">
     <h1>Crear Inquilino</h1>
 
-    <form action="/crearInquilino" method="post">
-        <!-- Agrega campos del formulario según tus necesidades -->
-        <label>Nombre:</label>
-        <input type="text" name="Nombre">
+    <form method="POST" action="{{ route('inquilinos.guardar')}}" >
+        @csrf
+        @method('POST')
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required><br>
 
-        <label>Apellido:</label>
-        <input type="text" name="Apellido">
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" required><br>
 
-        <label>Teléfono:</label>
-        <input type="text" name="Telefono">
+        <label for="telefono">Teléfono:</label>
+        <input type="text" name="telefono" required><br>
 
-        <label>Correo:</label>
-        <input type="text" name="Correo">
+        <label for="correo">Correo:</label>
+        <input type="email" name="correo" required><br>
 
-        <label>Fecha de Ingreso:</label>
-        <input type="text" name="FechaIngreso">
+        <label for="fechaIngreso">Fecha de Ingreso:</label>
+        <input type="date" name="fechaIngreso" required><br>
 
-        <button type="submit">Crear Inquilino</button>
-        
-    </form>
+
+      <button  type="submit" >Guardar </button>
+
+    </form><a href="{{route('inquilinos.mostrar')}}" class="">Regresar</a>
 
 </body>
 </html>
