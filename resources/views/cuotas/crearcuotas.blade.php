@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Crear Cuota</title>
     <style>
         body {
-            background-image: url('{{ asset('imagen/Finanzas.jpeg') }}');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) , url('{{ asset('imagen/Finanzas.jpeg') }}');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center ;
@@ -19,14 +19,14 @@
         form {
             width: 50%; /* Ajusta el ancho del formulario según sea necesario */
             padding: 20px;
-            background-color: #5e5959; /* Ajusta el color de fondo del formulario según sea necesario */
-            border-radius: 8px; /* Agrega bordes redondeados al formulario */
+            background-color: #33333380; /* Ajusta el color de fondo del formulario según sea necesario */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-left: 23%;/* Agrega una sombra suave al formulario */
             margin-top: 5%
         }
 
         label {
+            color: white;
             display: block;
             margin-bottom: 10px;
         }
@@ -39,11 +39,10 @@
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #33333390;
             color: white;
-            padding: 10px 20px;
+            padding: 0.75rem 1rem;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
         }
 
@@ -51,26 +50,18 @@
 </head>
 <body>
 
-    <form action="/cuotas" method="post">
+    <form action="{{ route('cuotas.nueva') }}" method="POST">
         @csrf
-        <!-- Agrega campos del formulario según tus necesidades -->
-        <label>Inquilino:</label>
-        <!-- Puedes usar un campo select para seleccionar inquilino -->
-        <select name="inquilino_id">
+        @method("POST")
 
-        </select>
+        <label for="numApartamento">Número de Apartamento</label>
+        <input type="number" id="numApartamento" name="numApartamento">
 
-        <label>Número de Apartamento:</label>
-        <input type="text" name="numApartamento">
+        <label>Monto</label>
+        <input type="number" step=".01" name="monto">
 
-        <label>Monto:</label>
-        <input type="text" name="Monto">
-
-        <label>Descripción:</label>
-        <input type="text" name="Descripcion">
-
-        <label>Fecha de Cobro:</label>
-        <input type="text" name="FechaCobro">
+        <label>Descripción</label>
+        <input type="text" name="descripcion">
 
         <button type="submit">Crear Cuota</button>
     </form>
