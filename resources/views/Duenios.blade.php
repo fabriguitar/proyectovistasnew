@@ -7,7 +7,7 @@
     <title>Document</title>
     <style>
         body {
-            background-image: url('{{ asset('imagen/apartamento.jpg') }}');
+            background-image: url('{{ asset('apartamento.jpg') }}');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center ;
