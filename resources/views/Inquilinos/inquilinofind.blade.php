@@ -37,27 +37,27 @@
             width: 100%;
             margin-top: 20px;
             border-collapse: collapse;
-            background-color: rgba(70, 53, 53, 0.9);
+            background-color: rgba(105, 72, 72, 0.9);
             border-radius: 10px;
         }
 
         th, td {
             padding: 15px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #db8d8d;
             text-align: left;
         }
 
         th {
-            background-color: #251616;
-            color: #f0dcdc;
+            background-color: #333;
+            color: #fff;
         }
     </style>
 </head>
 <body>
 
     <div id="content">
-    <h1>Listado de Inquilinos</h1>
-    <a style="margin-top: 3rem;" href="{{ route('inquilinos.crear')}}">Agregar inquilino</a>
+    <h1> <h3>{{$inquilinos['nombre']}}</h3></h1>
+    <a style="margin-top: 3rem;" href="">inquilino</a>
     <table>
         <thead>
             <tr>
@@ -71,18 +71,20 @@
         </thead>
         <tbody>
             <tr>
-                @foreach ($inquilinos as $item)
 
-                    <td>{{ $item['nombre'] }}</td>
-                    <td>{{ $item['apellido'] }}</td>
-                    <td>{{ $item['telefono'] }}</td>
-                    <td>{{ $item['correo'] }}</td>
-                    <td>{{ $item['fechaIngreso'] }}</td>
+                <td>{{ $inquilinos['idInquilino']}}</td>
+                    <td>{{ $inquilinos['nombre']}}</td>
+                    <td>{{ $inquilinos['apellido']}}</td>
+                    <td>{{ $inquilinos['telefono']}}</td>
+                    <td>{{ $inquilinos['correo']}}</td>
+                    <td>{{ $inquilinos['fechaIngreso']}}</td>
+                    <td>
+
                 </tr>
-            @endforeach
-
 
         </tbody>
     </table>
+    <a href="{{route('inquilinos.mostrar')}}" class="btn btn-info">Regresar</a>
+</div>
 </body>
 </html>

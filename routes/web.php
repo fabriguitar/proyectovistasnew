@@ -5,7 +5,7 @@ use App\Http\Controllers\CuotasController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\InquilinosController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Http;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 Route::get('/apartamentos/inicio',[InicioController::class, 'inicio'])->name('inicio.ver');
 Route::get('/apartamentos/dos',[InicioController::class, 'index'])->name('inicio.index');
@@ -43,7 +45,7 @@ Route::get('/cuotas/dueno',[CuotasController::class, 'cuotasDueno'])
 
 Route::get('/cuotas/inquilino',[CuotasController::class, 'cuotasInquilino'])
     ->name('cuotas.inquilino');
-    
+
 Route::get('/cuotas/apartamento',[CuotasController::class, 'cuotasApartamento'])
     ->name('cuotas.apartamento');
 
@@ -54,5 +56,11 @@ Route::get('/cuotas/cancelar', [CuotasController::class, 'cancelar'])->name('cuo
 Route::post('/cuotas/nueva', [CuotasController::class, 'nueva'])->name('cuotas.nueva');
 
 //inquilinos
-Route::get('/inquilinos/mostrar', [InquilinosController::class, 'obtenerTodos'])->name('inquilinos.mostrar');
+Route::get('/inquilinos/mostrar', [InquilinosController::class, 'mostrar'])->name('inquilinos.mostrar');
 Route::get('/inquilinos/crear', [InquilinosController::class, 'crear'])->name('inquilinos.crear');
+Route::post('/inquilinos/nueva', [InquilinosController::class, 'nueva'])->name('inquilinos.nueva');
+
+Route::post('/inquilinos/guardar', [InquilinosController::class, 'store'])->name('inquilinos.guardar');
+Route::get('/inquilinos/eliminar/{idInquilino}', [InquilinosController::class, 'destroy'])->name('inquilinos.eliminar');
+
+Route::get('/inquilinos/show/{idInquilino}', [InquilinosController::class, 'show'])->name('inquilinos.show');
