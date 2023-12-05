@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApartamentosController;
 use App\Http\Controllers\CuotasController;
+use App\Http\Controllers\DuenioController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\InquilinosController;
 use Illuminate\Support\Facades\Route;
@@ -17,14 +18,7 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
-Route::get('/apartamentos/inicio',[InicioController::class, 'inicio'])->name('inicio.ver');
-Route::get('/apartamentos/dos',[InicioController::class, 'index'])->name('inicio.index');
+Route::get('/',[InicioController::class, 'index'])->name('inicio');
 
 
 Route::get('/apartamentos/newapart',[ApartamentosController::class, 'crear'])->name('apartamento.crear');
@@ -70,7 +64,7 @@ Route::post('/duenos/crear', [DuenioController::class, "create"])
 Route::get('dueno/buscar',[DuenioController::class,'buscar'])->name('dueno.buscar');
 
 
-Route::delete('dueno/destroy/{idDueno}',[DuenioController::class,'destroy'])->name('dueno.destroy')
+Route::delete('dueno/destroy/{idDueno}',[DuenioController::class,'destroy'])->name('dueno.destroy');
 
 
 //inquilinos
