@@ -44,6 +44,24 @@ Route::get('/cuotas/cancelar', [CuotasController::class, 'cancelar'])->name('cuo
 
 Route::post('/cuotas/nueva', [CuotasController::class, 'nueva'])->name('cuotas.nueva');
 
+//duenos
+Route::get('/duenos',[DuenioController::class,'index'])
+    ->name('dueno.home');
+
+Route::get('/duenos/nuevo', function () {
+    return view("DueniosCrear");
+})
+    ->name('dueno.nuevo');
+
+Route::post('/duenos/crear', [DuenioController::class, "create"])
+    ->name('dueno.crear');
+
+Route::get('dueno/buscar',[DuenioController::class,'buscar'])->name('dueno.buscar');
+
+
+Route::delete('dueno/destroy/{idDueno}',[DuenioController::class,'destroy'])->name('dueno.destroy')
+
+
 //inquilinos
 Route::get('/inquilinos/mostrar', [InquilinosController::class, 'obtenerTodos'])->name('inquilinos.mostrar');
 Route::get('/inquilinos/crear', [InquilinosController::class, 'crear'])->name('inquilinos.crear');
