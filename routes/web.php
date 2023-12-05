@@ -1,4 +1,9 @@
 <?php
+
+use App\Http\Controllers\ApartamentosController;
+use App\Http\Controllers\CuotasController;
+use App\Http\Controllers\DuenioController;
+use App\Http\Controllers\InicioController;
 use App\Http\Controllers\InquilinosController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
@@ -13,14 +18,7 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
-Route::get('/apartamentos/inicio',[InicioController::class, 'inicio'])->name('inicio.ver');
-Route::get('/apartamentos/dos',[InicioController::class, 'index'])->name('inicio.index');
+Route::get('/',[InicioController::class, 'index'])->name('inicio');
 
 
 Route::get('/apartamentos/newapart',[ApartamentosController::class, 'crear'])->name('apartamento.crear');
@@ -36,7 +34,38 @@ Route::get('/apartamentos/agregar',[ApartamentosController::class, 'agregar'])->
 //cuota
 Route::get('/cuotas/index',[CuotasController::class, 'index'])->name('cuotas.all');
 
+Route::get('/cuotas/dueno',[CuotasController::class, 'cuotasDueno'])
+    ->name('cuotas.dueno');
+
+Route::get('/cuotas/inquilino',[CuotasController::class, 'cuotasInquilino'])
+    ->name('cuotas.inquilino');
+
+Route::get('/cuotas/apartamento',[CuotasController::class, 'cuotasApartamento'])
+    ->name('cuotas.apartamento');
+
 Route::get('/cuotas/crear', [CuotasController::class, 'crear'])->name('cuotas.crear');
+
+Route::get('/cuotas/cancelar', [CuotasController::class, 'cancelar'])->name('cuotas.cancelar');
+
+Route::post('/cuotas/nueva', [CuotasController::class, 'nueva'])->name('cuotas.nueva');
+
+//duenos
+Route::get('/duenos',[DuenioController::class,'index'])
+    ->name('dueno.home');
+
+Route::get('/duenos/nuevo', function () {
+    return view("DueniosCrear");
+})
+    ->name('dueno.nuevo');
+
+Route::post('/duenos/crear', [DuenioController::class, "create"])
+    ->name('dueno.crear');
+
+Route::get('dueno/buscar',[DuenioController::class,'buscar'])->name('dueno.buscar');
+
+
+Route::delete('dueno/destroy/{idDueno}',[DuenioController::class,'destroy'])->name('dueno.destroy');
+
 
 //inquilinos
 Route::get('/inquilinos/mostrar', [InquilinosController::class, 'mostrar'])->name('inquilinos.mostrar');

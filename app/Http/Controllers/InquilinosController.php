@@ -45,25 +45,22 @@ public function store(Request $request)
 {
     $inquilinos = array(
         'nombre' => $request->input('nombre'),
-        'apellidos' => $request->input('apellidos'),
+        'apellido' => $request->input('apellido'),
 
-        'direccion' => $request->input('direccion'),
         'telefono' => $request->input('telefono'),
         'correo' => $request->input('correo'),
-        'fechaingreso' => $request->input('fechaingreso'),
+        'fechaIngreso' => $request->input('fechaIngreso'),
     );
 
+    $client = new Client();
+    $request = $client->post('localhost:8080/api/inquilinos/crear',
+        ['json' => $inquilinos]
+    );
 
-
-$client = new Client();
-$request = $client->post('localhost:8080/api/inquilinos/crear',
-['json' => $inquilinos]
-);
-
-if ($request->getStatusCode() == 200) {
-    return $this->mostrar();
-}
-echo "Ha ocurrido un error!";
+    if ($request->getStatusCode() == 200) {
+        return $this->mostrar();
+    }
+    echo "Ha ocurrido un error!";
 }
 
 
